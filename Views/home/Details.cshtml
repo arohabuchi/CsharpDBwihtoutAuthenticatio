@@ -1,0 +1,44 @@
+@model EmlpoyeeMgt.ViewModels.HomeDetailViewModel
+
+<div>
+    <h2>@Model.PageTitle</h2>
+</div>
+    
+    @{
+        var employee = ViewData["Employee"] as EmlpoyeeMgt.Models.Employee;
+        var PhotoPath="~/images/"+(Model.Employee.PhotoPath ?? "images.jpg");
+    }
+
+    <div>
+      <h2>
+        Name: @Model.Employee.Name
+      </h2>
+    </div>
+    <img src="@PhotoPath" asp-append-version="true"/>
+    <div class="">
+      <h2>
+        Employee id: @Model.Employee.Id
+      </h2>
+       <h2>
+        Email : @Model.Employee.Email
+      </h2>
+       <h2>
+        Department : @Model.Employee.Department
+      </h2>
+       
+    </div>
+    <div>
+        <a asp-controller="Home" asp-action="Index" >Back</a>
+        <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Employee.Id" >Edit</a>
+        <a href="" >Delete</a>
+    </div>
+    @* <div class="deff">
+        Name: @Model.Employee.Name
+    </div>
+    <div class="deff">
+      Email:  @Model.Employee.Email
+    </div> 
+    <div class="deff">
+      Department:  @Model.Employee.Dept
+    </div> *@
+    

@@ -1,0 +1,38 @@
+@model EmlpoyeeMgt.ViewModels.EmployeeEditViewModel
+@inject IEmployeeRepository _employeeRepository  
+@{
+    ViewBag.Title="Edit Employee";
+    var photoPath="~/images/"+ (Model.ExistingPhotoPath ?? "images.jpg");
+}
+<form enctype="multipart/form-data" asp-controller="Home" asp-action="Create" method="post">
+    <div class="">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <input hidden asp-for="Id">
+    <input hidden asp-for="ExistingPhotoPath">
+    <div class="">
+        <label >Choose File</label>
+        <input asp-for="Photo" />
+        
+    </div>
+    <div class="">
+        <label asp-for="Department"></label>
+        <select asp-for="Department" asp-items="Html.GetEnumSelectList<Dept>()" >
+            <option value="">Please Select</option>
+        </select>
+        <span asp-validation-for="Department"></span>
+    </div>
+    <img src="@photoPath" asp-append-version="true">g
+    <div asp-validation-summary="All"></div>
+    <div class="dd">
+        <button type="submit" >Update</button>
+        <a asp-controller="home" asp-action="index">Cancel</a> 
+    </div>
+</form>
